@@ -1,4 +1,5 @@
 using CSCPPInteropFuncSet;
+using System.Runtime.InteropServices;
 using System.Windows.Threading;
 
 namespace TestProject1
@@ -28,6 +29,38 @@ namespace TestProject1
                 await Task.Yield();
 
                 TestContext.WriteLine("adding 2 numbers" + MainWindow.AddStrings("hello","world").ToString());
+            });
+        }
+        [TestMethod]
+        public async Task TestAdd2StringsStress()
+        {
+            TestContext.WriteLine("Running test. Curdir = " + Environment.CurrentDirectory);
+            await RunInSTAExecutionContextAsync(async () =>
+            {
+                var x = new MainWindow();
+                await Task.Yield();
+                var numIterations = 10000000;
+                var lastTotMemory = 0l;
+                var lstLeak = new List<string>();
+                var modulo = 100000;
+                for (int i = 0; i < numIterations; i++)
+                {
+                    if (i % modulo == 0)
+                    {
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        GC.Collect();
+                        var totMemory = GC.GetTotalMemory(true);
+                        var delta = (totMemory - lastTotMemory)/modulo;
+                        lastTotMemory = totMemory;
+
+                        TestContext.WriteLine($"adding 2 numbers {totMemory:n1} {delta}");
+                    }
+                    var res = MainWindow.AddStrings("hello", "world").ToString();
+                    //lstLeak.Add(res);
+                }
+
+                TestContext.WriteLine("adding 2 numbers" + MainWindow.AddStrings("hello", "world").ToString());
             });
         }
 
