@@ -17,3 +17,9 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
+extern "C" __declspec(dllexport) int Add(int num1, int num2) {
+	return num1+num2;
+}
+
+
+

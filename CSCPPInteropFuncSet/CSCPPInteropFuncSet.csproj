@@ -6,6 +6,20 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CPPFunctioncSet\CPPFunctioncSet.vcxproj">
+      <Private>True</Private>
+      <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="CopyDLLs" AfterTargets="Build">
+    <Message Text="Executing CopyDLLs task" Importance="High" />
+    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctioncSet.dll"
+          DestinationFolder="$(TargetDir)" />
+    <Message Text="Copied build files.$(TargetDir) " Importance="High" />
+  </Target>
 
 </Project>
