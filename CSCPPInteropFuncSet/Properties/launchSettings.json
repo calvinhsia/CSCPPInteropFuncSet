@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CSCPPInteropFuncSet": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

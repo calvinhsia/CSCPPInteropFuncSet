@@ -19,6 +19,8 @@
     <Message Text="Executing CopyDLLs task" Importance="High" />
     <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctioncSet.dll"
           DestinationFolder="$(TargetDir)" />
+    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctioncSet.pdb"
+          DestinationFolder="$(TargetDir)" />
     <Message Text="Copied build files.$(TargetDir) " Importance="High" />
   </Target>
 

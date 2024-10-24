@@ -27,11 +27,20 @@ namespace CSCPPInteropFuncSet
         }
         [DllImport("CPPFunctioncSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int Add(int a, int b);
+
+        [DllImport("CPPFunctioncSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.BStr)]
+        public static extern
+            string AddStrings(
+            [MarshalAs(UnmanagedType.BStr)] string a,
+            [MarshalAs(UnmanagedType.BStr)] string b);
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var x = System.Environment.CurrentDirectory;
+            var res = AddStrings("Hello", "World");
+
             int a = 10;
             int b = 20;
+            //Marshal.AllocCoTaskMem
             int c = Add(a, b);
 
             MessageBox.Show($"Add({a},{b})={c}");
