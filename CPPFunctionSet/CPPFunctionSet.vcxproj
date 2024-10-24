@@ -24,6 +24,7 @@
     <ProjectGuid>{e3329054-9eb5-4222-a20d-bb2699e16a3f}</ProjectGuid>
     <RootNamespace>CPPFunctioncSet</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>CPPFunctionSet</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

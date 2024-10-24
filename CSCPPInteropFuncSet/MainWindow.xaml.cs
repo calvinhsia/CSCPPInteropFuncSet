@@ -25,10 +25,10 @@ namespace CSCPPInteropFuncSet
             InitializeComponent();
             this.Loaded += MainWindow_Loaded;
         }
-        [DllImport("CPPFunctioncSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("CPPFunctionSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int Add(int a, int b);
 
-        [DllImport("CPPFunctioncSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [DllImport("CPPFunctionSet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.BStr)]
         public static extern
             string AddStrings(

@@ -21,9 +21,9 @@
   </ItemGroup>
   <Target Name="CopyDLLs" AfterTargets="Build">
     <Message Text="Executing CopyDLLs task" Importance="High" />
-    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctioncSet.dll"
+    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctionSet.dll"
           DestinationFolder="$(TargetDir)" />
-    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctioncSet.pdb"
+    <Copy SourceFiles="$(TargetDir)..\..\..\..\x64\$(Configuration)\CPPFunctionSet.pdb"
           DestinationFolder="$(TargetDir)" />
     <Message Text="Copied build files.$(TargetDir) " Importance="High" />
   </Target>

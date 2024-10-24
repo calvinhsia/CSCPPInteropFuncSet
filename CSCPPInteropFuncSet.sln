@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject1", "TestProject
 		{A9E65193-C812-4656-88A2-DC307B94F91F} = {A9E65193-C812-4656-88A2-DC307B94F91F}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPPFunctioncSet", "CPPFunctioncSet\CPPFunctioncSet.vcxproj", "{E3329054-9EB5-4222-A20D-BB2699E16A3F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPPFunctionSet", "CPPFunctionSet\CPPFunctionSet.vcxproj", "{E3329054-9EB5-4222-A20D-BB2699E16A3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
