@@ -27,10 +27,12 @@ extern "C" __declspec(dllexport) int Add(int num1, int num2) {
 
 
 
-extern "C" __declspec(dllexport) BSTR AddStrings(WCHAR *  str1, WCHAR*  str2) {
+extern "C" __declspec(dllexport) BSTR AddStrings(BSTR  str1, BSTR  str2) {
     CComBSTR bstr1(str1);
     auto hr = bstr1.Append(str2);
+	if (hr != S_OK) {
+		return SysAllocString(L"Error");
+	}
 	BSTR result = SysAllocString(bstr1);
 	return result;
-    //return SysAllocString(L"result.m_str");
 };

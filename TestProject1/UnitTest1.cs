@@ -1,4 +1,5 @@
 using CSCPPInteropFuncSet;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
 
@@ -27,8 +28,9 @@ namespace TestProject1
             {
                 var x = new MainWindow();
                 await Task.Yield();
-
-                TestContext.WriteLine("adding 2 numbers" + MainWindow.AddStrings("hello","world").ToString());
+                var result = MainWindow.AddStrings("hello", "world");
+                Assert.AreEqual("helloworld", result);
+                TestContext.WriteLine("adding 2 strings " + result);
             });
         }
         [TestMethod]
@@ -39,10 +41,11 @@ namespace TestProject1
             {
                 var x = new MainWindow();
                 await Task.Yield();
-                var numIterations = 10000000;
-                var lastTotMemory = 0l;
+                var numIterations = 100000;
+                var lastMgdTotalMem = 0l;
+                var lastProcTotalMem = 0l;
                 var lstLeak = new List<string>();
-                var modulo = 100000;
+                var modulo = 1000;
                 for (int i = 0; i < numIterations; i++)
                 {
                     if (i % modulo == 0)
@@ -50,13 +53,19 @@ namespace TestProject1
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
                         GC.Collect();
-                        var totMemory = GC.GetTotalMemory(true);
-                        var delta = (totMemory - lastTotMemory)/modulo;
-                        lastTotMemory = totMemory;
+                        var totMemoryMgd = GC.GetTotalMemory(true);
+                        var deltaMgd = (totMemoryMgd - lastMgdTotalMem)/modulo;
+                        lastMgdTotalMem = totMemoryMgd;
+                        var procMem = Process.GetCurrentProcess().PeakVirtualMemorySize64;
+                        var deltaProc = (procMem - lastProcTotalMem) / modulo;
+                        lastProcTotalMem = procMem;
 
-                        TestContext.WriteLine($"adding 2 numbers {totMemory:n1} {delta}");
+
+                        TestContext.WriteLine($"adding 2 strings {i:n0} {totMemoryMgd:n01} {deltaMgd}  {deltaProc} ");
                     }
-                    var res = MainWindow.AddStrings("hello", "world").ToString();
+                    var longstr1 = new string('a', 100000);
+                    var longstr2 = new string('b', 100000);
+                    var res = MainWindow.AddStrings(longstr1, longstr2);
                     //lstLeak.Add(res);
                 }
 
